@@ -1,0 +1,54 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%; }
+
+html a {
+        text-decoration: none; }
+
+html a:hover {
+        text-decoration: none; }
+
+html body {
+        height: 90%;
+        margin: 0;
+        padding: 0;
+        color: #323232;
+        background: #FFFAFA;
+}
+
+html body .container-fluid {
+        padding: 0; }
+            
+footer {
+        height:160px;
+        color: #666;
+        background: #222;
+        padding: 17px 0 18px 0;
+}
+
+.wrapper {
+        width: 100%;
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -160px;
+}
+
+.wrapper .container .hero-unit {
+
+}
+
+.push {
+            height: 160px; }
+
+/* not required for sticky footer; just pushes hero down a bit */
+.wrapper > .container {
+            padding-top: 60px; }
