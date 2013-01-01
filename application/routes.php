@@ -1,9 +1,31 @@
 <?php
 
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
+/**
+ * register NESTED controllers here
+ */
+Route::controller( array(
+        'admin.snippets',
+        'admin.tags',
+        'members.snippets',
+        'members.tags',
+        
+
+) );
+
+/**
+ * register NOT NESTED controllers here
+ */
+Route::controller( array(
+        'home',
+        'snippets',
+        'auth',
+        'tags',
+        'feed',
+
+
+) );
+
+Route::get('/', 'snippets@index');
 
 /*
 |--------------------------------------------------------------------------

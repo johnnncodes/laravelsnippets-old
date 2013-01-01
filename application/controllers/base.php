@@ -2,6 +2,17 @@
 
 class Base_Controller extends Controller {
 
+	public $restful = true;
+
+	public $layout = 'layouts.default';
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->filter('before', 'csrf')->on('post');
+		$this->layout->page_title = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
+	}
+
 	/**
 	 * Catch-all method for requests that can't be matched.
 	 *
@@ -13,5 +24,7 @@ class Base_Controller extends Controller {
 	{
 		return Response::error('404');
 	}
+
+
 
 }
