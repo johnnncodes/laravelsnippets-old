@@ -54,15 +54,9 @@ footer {
             padding-top: 60px; }
 
 
+
 .bold {
     font-weight: bold;
-}
-
-p {
-    padding: 0 0 0 0;
-    color: #4C4C4C;
-    font-size: 13px;
-    line-height: 22px;
 }
 
 .snippet-meta p {
@@ -71,4 +65,12 @@ p {
 
 .snippet-meta span {
     font-weight: normal;
+}
+
+pre#snippet, pre#snippet pre {
+    background-color: white;
+}
+
+table#properties-table a.title-link:hover {
+    text-decoration: underline;
 }

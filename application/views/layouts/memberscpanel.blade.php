@@ -14,7 +14,7 @@
 
     <style>
         body {
-            /*padding-top: 60px;*/
+            padding-top: 60px!important;
             padding-bottom: 40px;
         }
 

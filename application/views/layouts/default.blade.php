@@ -87,12 +87,12 @@
           <div class="masthead">
             <ul class="nav nav-pills pull-right">
               <li class="active"><a href="{{ action('pages@index') }}">Home</a></li>
-              <li><a href="{{ action('snippets@index') }}">Snippets</a></li>
+              <li ><a href="{{ action('snippets@index') }}">Snippets</a></li>
               <li><a href="{{ action('tags@index') }}">Tags</a></li>
               <li><a href="{{ action('pages@index') }}pages/index/about">About</a></li>
               <li><a href="{{ action('auth@login') }}">Submit</a></li>
             </ul>
-            <h3 class="muted">Laravel Snippets</h3>
+            <a href="{{ action('pages/index') }}"><h3 class="muted">Laravel Snippets</h3></a>
           </div>
        </div>
      </div>

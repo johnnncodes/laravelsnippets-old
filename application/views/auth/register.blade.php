@@ -44,6 +44,6 @@
 
         <a href="{{ action('auth@login') }}">Sign In</a>
         |
-        <a href="{{ action('home@index') }}">Go back to home page</a>
+        <a href="{{ action('pages@index') }}">Go back to home page</a>
     </div>
 </div>

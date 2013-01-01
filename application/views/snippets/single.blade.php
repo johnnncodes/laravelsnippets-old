@@ -1,7 +1,7 @@
 <div class="row">    
     <div class="span12">
         <div class="breadcrumb">
-            <a href="{{ action('home@index') }}">Home</a> / <a href="{{ action('snippets@index') }}">Snippets</a> / <span style="color: #999;">{{ e(ucfirst(Str::lower($snippet->title))) }}</span>
+            <a href="{{ action('pages@index') }}">Home</a> / <a href="{{ action('snippets@index') }}">Snippets</a> / <span style="color: #999;">{{ e(ucfirst(Str::lower($snippet->title))) }}</span>
         </div>
     </div>
 </div>

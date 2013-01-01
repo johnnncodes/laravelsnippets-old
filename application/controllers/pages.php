@@ -7,7 +7,9 @@ class Pages_Controller extends Base_Controller {
 		if ( ! is_null($page)) {
 			$this->layout->content = View::make('pages.' . $page);			
 		} else {
-			$this->layout->content = View::make('pages.index')->with('snippets', Snippet::all());
+
+			$this->layout->content = View::make('pages.index')
+				->with('snippets', Snippet::all());
 		}
 	}
 

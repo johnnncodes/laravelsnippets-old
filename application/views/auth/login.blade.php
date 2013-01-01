@@ -26,6 +26,6 @@
 
                     <a href="{{ action('auth@register') }}">Register</a>
                     |
-                    <a href="{{ action('home@index') }}">Go back to home page</a>
+                    <a href="{{ action('pages@index') }}">Go back to home page</a>
         </div>
     </div>
