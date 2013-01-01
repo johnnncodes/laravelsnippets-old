@@ -15,7 +15,7 @@ class Auth_Controller extends Base_Controller {
             return Redirect::to_action('admin.snippets@index');
         }
 
-        return View::make('auth.login');
+        $this->layout->content = View::make('auth.login');
     }
 
     public function post_login() 

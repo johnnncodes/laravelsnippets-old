@@ -16,7 +16,7 @@ Route::controller( array(
  * register NOT NESTED controllers here
  */
 Route::controller( array(
-        'home',
+        'pages',
         'snippets',
         'auth',
         'tags',
@@ -25,7 +25,7 @@ Route::controller( array(
 
 ) );
 
-Route::get('/', 'snippets@index');
+Route::get('/', 'pages@index');
 
 /*
 |--------------------------------------------------------------------------

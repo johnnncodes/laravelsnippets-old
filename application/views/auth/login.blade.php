@@ -1,4 +1,7 @@
-<legend>Please sign in to submit a snippet</legend>
+ <div class="row">
+        <div class="span4 offset4 well">
+           <!--  <h2 class="text-info">Please sign in to submit a snippet</h2> -->
+            <legend>Please sign in to submit a snippet</legend>
             
             @if (Session::has('login_errors'))
                 <div class="alert alert-error">
@@ -24,3 +27,5 @@
                     <a href="{{ action('auth@register') }}">Register</a>
                     |
                     <a href="{{ action('home@index') }}">Go back to home page</a>
+        </div>
+    </div>

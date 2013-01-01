@@ -81,6 +81,60 @@
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
     
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="{{ URL::base() }}">Laravel Snippets</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Snippets <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">Actions</li>
+                                <li><a href="{{ action('admin.snippets@submit') }}">Add</a></li>
+                                <li><a href="{{ action('admin.snippets@index') }}">Manage</a></li>
+                            </ul>
+                            
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">Actions</li>
+                                <li><a href="{{ action('admin.tags@add') }}">Add</a></li>
+                                <li><a href="{{ action('admin.tags@manage') }}">Manage</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                   
+                </div><!--/.nav-collapse -->
+
+                <div class="pull-right">
+                    <ul class="nav pull-right">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="icon-cog"></i> Preferences(Soon)</a></li>
+                                <li><a href="#"><i class="icon-envelope"></i> Contact Support(Soon)</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ action('auth@logout') }}"><i class="icon-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- /navbar -->
+
+
+
    <div class="container">
       <div class="row">
         <div class="span12">
