@@ -2,6 +2,14 @@
 
 ## Contents
 
+- [Laravel 3.2.12](#3.2.12)
+- [Upgrading From 3.2.11](#upgrade-3.2.12)
+- [Laravel 3.2.11](#3.2.11)
+- [Upgrading From 3.2.10](#upgrade-3.2.11)
+- [Laravel 3.2.10](#3.2.10)
+- [Upgrading From 3.2.9](#upgrade-3.2.10)
+- [Laravel 3.2.9](#3.2.9)
+- [Upgrading From 3.2.8](#upgrade-3.2.9)
 - [Laravel 3.2.8](#3.2.8)
 - [Upgrading From 3.2.7](#upgrade-3.2.8)
 - [Laravel 3.2.7](#3.2.7)
@@ -40,6 +48,48 @@
 - [Upgrading From 3.1](#upgrade-3.1.1)
 - [Laravel 3.1](#3.1)
 - [Upgrading From 3.0](#upgrade-3.1)
+
+<a name="3.2.12"></a>
+## Laravel 3.2.12
+
+- Clear sections on a complete render operation.
+
+<a name="upgrade-3.2.12"></a>
+### Upgrading From 3.2.11
+
+- Replace the **laravel** folder.
+
+<a name="3.2.11"></a>
+## Laravel 3.2.11
+
+- Improve performance of Eloquent eager load matching.
+- Check `gethostname` on environment detection.
+
+<a name="upgrade-3.2.11"></a>
+### Upgrading From 3.2.10
+
+- Replace the **laravel** folder.
+
+<a name="3.2.10"></a>
+## Laravel 3.2.10
+
+- Fix bug in Eloquent model.
+
+<a name="upgrade-3.2.9"></a>
+### Upgrading From 3.2.9
+
+- Replace the **laravel** folder.
+
+<a name="3.2.9"></a>
+## Laravel 3.2.9
+
+- Always log exceptions even when there are "logger" event listeners.
+- Fix nasty view exception messages.
+
+<a name="upgrade-3.2.9"></a>
+### Upgrading From 3.2.8
+
+- Replace the **laravel** folder.
 
 <a name="3.2.8"></a>
 ## Laravel 3.2.8
