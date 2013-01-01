@@ -8,23 +8,37 @@ class Members_Snippets_Controller extends Base_Controller {
 	{
 	    parent::__construct();
 	    $this->filter('before', 'auth');
-	    $this->layout = View::make('layouts.cpanel');
+	    $this->layout = View::make('layouts.memberscpanel');
 	    $this->layout->page_title = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
 
 	}
 
-	public function get_index()
+	public function get_index($id = null)
 	{
-		$this->layout->content = View::make('members.snippets.index')
-			->with('currentPage', 'snippets')
-			->with('snippets', Snippet::where_user_id(Auth::user()->id)->paginate(10)); 
+		if ( ! is_null($id) ) {
+
+			if ($count = Snippet::where_id_and_user_id($id, Auth::user()->id)->count() < 1) {
+				return Response::error('404');
+			}
+
+			$this->layout->content = View::make('members.snippets.single')
+										->with('currentPage', 'snippets')
+										->with('snippet', Snippet::where_id($id)->first());
+
+		} else {
+			$this->layout->content = View::make('members.snippets.index')
+										->with('currentPage', 'snippets')
+										->with('snippets', Snippet::where_user_id(Auth::user()->id)->paginate(10)); 
+		}
+
+
 	}
 
 	public function get_submit()
 	{
-		return View::make('members.snippets.submit')
-			->with('currentPage', 'submit-snippets')
-			->with('tagsArray', Tag::lists('name', 'id'));;
+		$this->layout->content = View::make('members.snippets.submit')
+									->with('currentPage', 'submit-snippets')
+									->with('tagsArray', Tag::lists('name', 'id'));
 	}
 
 	public function post_submit()
@@ -123,45 +137,39 @@ class Members_Snippets_Controller extends Base_Controller {
 		}
 	}
 
-	public function get_view_snippet($id)
-	{
-		// validate
-		// if ($count = Snippet::where_id($id)->count() < 1) {
-		// 	return Response::error('404');
-		// }
+	// public function get_view_snippet($id)
+	// {
+	// 	// validate
+	// 	// if ($count = Snippet::where_id($id)->count() < 1) {
+	// 	// 	return Response::error('404');
+	// 	// }
 
-		// validate if the user is the owner of the snippet
-		if ($count = Snippet::where_id_and_user_id($id, Auth::user()->id)->count() < 1) {
-			return Response::error('404');
-		}
+	// 	// validate if the user is the owner of the snippet
+	// 	if ($count = Snippet::where_id_and_user_id($id, Auth::user()->id)->count() < 1) {
+	// 		return Response::error('404');
+	// 	}
 
-		return View::make('members.snippets.single')
-			->with('currentPage', 'snippets')
-			->with('snippet', Snippet::where_id($id)->first());
-	}
+	// 	return View::make('members.snippets.single')
+	// 		->with('currentPage', 'snippets')
+	// 		->with('snippet', Snippet::where_id($id)->first());
+	// }
 
 	public function get_edit($id)
 	{
-		// validate
-		// if ($count = Snippet::where_id($id)->count() < 1) {
-		// 	return Response::error('404');
-		// }
-
 		// validate if the user is the owner of the snippet
 		if ($count = Snippet::where_id_and_user_id($id, Auth::user()->id)->count() < 1) {
 			return Response::error('404');
 		}
 
-		$view = View::make('members.snippets.edit')
-			->with('snippet', $snippet = Snippet::find($id))
-			->with('tagsArray', Tag::lists('name', 'id'));
+		$snippet = Snippet::find($id);
 
 		$selectedTagIdsArray = array();
 		$selectedTagIdsArray = $snippet->tags()->lists('id');
 
-		$view['selectedTagIdsArray'] = $selectedTagIdsArray;
-
-		return $view;
+		$this->layout->content = View::make('members.snippets.edit')
+			->with('snippet', $snippet)
+			->with('tagsArray', Tag::lists('name', 'id'))
+			->with('selectedTagIdsArray', $selectedTagIdsArray);
 	}
 
 	public function post_edit()

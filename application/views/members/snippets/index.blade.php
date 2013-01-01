@@ -29,16 +29,15 @@
 
 		    <tr>
 		        <td class="center">{{ $snippet->id }}</td>
-		        <td class="center" ><a class="title-link" href="{{ action('members.snippets@view_snippet', array($snippet->id)) }}">{{ e($snippet->title) }}</a></td>
+		        <td class="center" ><a class="title-link" href="{{ action('members.snippets@index', array($snippet->id)) }}">{{ e($snippet->title) }}</a></td>
 		        <td class="center">
 			        	
-					<a href="{{ action('members.snippets@view_snippet', array($snippet->id)) }}" class="btn btn-info">
+					<a href="{{ action('members.snippets@index', array($snippet->id)) }}" class="btn btn-info">
 		        		View
 		        	</a>
 		        	<a href="{{ action('members.snippets@edit', array($snippet->id)) }}" class="btn btn-info">
 		        		Edit
 		        	</a>
-
 
 		        	<a href="#myModal-delete-{{ $snippet->id }}" role="button" class="btn btn-danger" data-toggle="modal">Delete</a>
 

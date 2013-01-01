@@ -15,12 +15,12 @@
       <div class="row-fluid marketing">
         <div class="span6">
           <h4>Latest Snippets:</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+          <p>Feature coming very soon...</p>
         </div>
 
         <div class="span6">
           <h4>Random Snippets</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+          <p>Feature coming very soon...</p>
       </div>
 
       <hr>

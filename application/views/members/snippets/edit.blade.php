@@ -1,6 +1,4 @@
-@layout('layouts.members')
 
-@section('content')
 	
 <div class="container content-container">
 
@@ -79,4 +77,3 @@
 
 
     
-@endsection 
