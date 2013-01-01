@@ -48,7 +48,7 @@ class Auth_Controller extends Base_Controller {
 
     public function get_register()
     {
-        return $this->layout->content = View::make('auth.register')->with('currentPage', 'home');
+        $this->layout->content = View::make('auth.register')->with('currentPage', 'home');
     }
 
     public function post_register()
@@ -98,7 +98,7 @@ class Auth_Controller extends Base_Controller {
     public function get_logout()
     {
         Auth::logout();
-        return Redirect::to_action('members.snippets@index');
+        return Redirect::to_action('pages@index');
     }
 
 }

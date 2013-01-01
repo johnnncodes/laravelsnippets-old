@@ -29,11 +29,11 @@ class Admin_Snippets_Controller extends Base_Controller {
 			}
 
 			$this->layout->content = View::make('admin.snippets.single')
-												->with('snippet', Snippet::where_id($id)->first());
+											->with('snippet', Snippet::where_id($id)->first());
 
 		} else {
 			$this->layout->content = View::make('admin.snippets.index')
-											->with('snippets', Snippet::order_by('created_at', 'desc')->paginate(10));
+										->with('snippets', Snippet::order_by('created_at', 'desc')->paginate(10));
 		}
 
 		
@@ -88,17 +88,6 @@ class Admin_Snippets_Controller extends Base_Controller {
 		}
 	}
 
-	// public function get_view_snippet($id)
-	// {
-	// 	// validate
-	// 	if ($count = Snippet::where_id($id)->count() < 1) {
-	// 		return Response::error('404');
-	// 	}
-
-	// 	return View::make('admin.snippets.single')
-	// 		->with('snippet', Snippet::where_id($id)->first());
-	// }
-
 	public function get_publish($id)
 	{
 		$snippet = Snippet::where_id($id)->first();
@@ -113,17 +102,12 @@ class Admin_Snippets_Controller extends Base_Controller {
 
 	public function get_delete($id)
 	{
-		// return $id;
 		$snippet = Snippet::find($id);
 
 		// delete relationships between the snippets to be deleted and the tags
 		$snippet->tags()->delete();
 
-		// return $snippet->title;
-
 	 	$fromSingleView = Input::get('fromSingleView');
-
-	 	// return $fromSingleView;
 
 		if ($snippet->delete()) {
 
@@ -141,37 +125,24 @@ class Admin_Snippets_Controller extends Base_Controller {
 			
 			return Redirect::back()->with_errors(array('Deleting failed!'));
 
-
 		}
 	}
 
 	public function get_edit($id)
 	{
-		// validate
 		if ($count = Snippet::where_id($id)->count() < 1) {
 			return Response::error('404');
 		}
 
-
-		// $view = View::make('admin.snippets.edit')
-		// 	->with('snippet', $snippet = Snippet::find($id))
-		// 	->with('tagsArray', Tag::lists('name', 'id'));
-
-		// $selectedTagIdsArray = array();
-		// $selectedTagIdsArray = $snippet->tags()->lists('id');
-
-		// $view['selectedTagIdsArray'] = $selectedTagIdsArray;
-
-		// return $view;
-
-		$this->layout->content = View::make('admin.snippets.edit')
-			->with('snippet', $snippet = Snippet::find($id))
-			->with('tagsArray', Tag::lists('name', 'id'));
+		$snippet = Snippet::find($id);
 
 		$selectedTagIdsArray = array();
 		$selectedTagIdsArray = $snippet->tags()->lists('id');
 
-		$this->layout->selectedTagIdsArray = $selectedTagIdsArray;
+		$this->layout->content = View::make('admin.snippets.edit')
+									->with('snippet', $snippet)
+									->with('tagsArray', Tag::lists('name', 'id'))
+									->with('selectedTagIdsArray', $selectedTagIdsArray);
 	}
 
 	public function post_edit()
@@ -198,19 +169,10 @@ class Admin_Snippets_Controller extends Base_Controller {
 				if ($count != 1) {
 					return Redirect::back()->with_errors(array('are you cheating? one of the tags you chose doesn\'t exist!'));
 				}
-
 			}
 		}
 
-		if ($snippet->save(Tag::$rules = array( // to override existing rules
-										'title' => 'required|max:80',
-										'description' => 'required',
-										'code' => 'required',
-										'user_id' => 'integer',
-										'published' => 'required|integer',
-										'ip' => 'required',
-									)
-		)) {
+		if ($snippet->save()) {
 
 			// relate the snippet and the tags if the user has chosen some tags
 			if (Input::get('tags')) {

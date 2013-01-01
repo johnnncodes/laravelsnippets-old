@@ -73,6 +73,10 @@
     })();
 
     </script>
+
+    <!-- chosen plugin -->
+    <link rel="stylesheet" type="text/css" href="{{ URL::to_asset('chosen/chosen.css') }}">
+    <!-- chosen plugin ends -->
     
 </head>
 <body>
@@ -204,6 +208,15 @@
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
         <!-- facebook like ENDS -->
+
+        <!-- chosen-->
+        <script src="{{ URL::to_asset('chosen/chosen.jquery.min.js') }}"></script>
+
+        <script type="text/javascript">
+
+            $(".chzn-select").chosen();
+            
+        </script>
 
     <!-- SCRIPTS ENDS -->
 </body>
