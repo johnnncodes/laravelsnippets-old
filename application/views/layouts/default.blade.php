@@ -30,7 +30,7 @@
           font-size: 72px;
           line-height: 1;
         }
-        .jumbotron .btn {
+        .jumbotron .btn-jumbo {
           font-size: 21px;
           padding: 14px 24px;
         }
@@ -106,7 +106,7 @@
 
 
       <div class="footer">
-        <p>&copy; John Kevin M. Basco | Mayon Volcano Software Ltd.</p>
+        <p>&copy; John Kevin M. Basco | Mayon Volcano Software Ltd. | Laravel snippets social accounts: <a href="http://www.facebook.com/LaravelSnippets?fref=ts" target="__blank">Facebook</a>, <a href="https://twitter.com/laravelsnippets" target="__blank">Twitter</a>, <a href="http://feeds.feedburner.com/ARepositoryOfCodeSnippetsForLaravelFrameworkLaravelsnippetstk" target="__blank">RSS</a>, <a href="http://feedburner.google.com/fb/a/mailverify?uri=ARepositoryOfCodeSnippetsForLaravelFrameworkLaravelsnippetstk&amp;loc=en_US" target="__blank">Newsletter</a> and <a target="__blank" href="https://github.com/basco-johnkevin/laravelsnippets">Github</a></p>
       </div>
 
    </div> <!-- /container-narrow -->

@@ -7,9 +7,20 @@
       <div class="jumbotron">
         <h1>Welcome to Laravel Snippets!</h1>
         <p class="lead">Feel free to grab or submit useful code snippets for Laravel.</p>
-        <a class="btn btn-large btn-success" href="{{ action('snippets@index') }}">Grab a snippet now!</a>
-      </div>
+        <a class="btn btn-jumbo btn-large btn-success" href="{{ action('snippets@index') }}">Grab a snippet now!</a>
+ <br><br><br>
+              <!-- twitter tweet -->
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="laravelsnippets">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        <!-- twitter tweet ENDS -->
 
+        <!-- facebook like -->
+        <div class="fb-like" data-href="http://www.facebook.com/LaravelSnippets" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+        <!-- facebook like ENDS -->
+
+        <br>
+
+      </div>
       <hr>
 
       <div class="row-fluid marketing">

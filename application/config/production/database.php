@@ -14,4 +14,5 @@ return array(
             'charset'  => 'utf8',
             'prefix'   => '',
         ),
+    )      
 );

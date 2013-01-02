@@ -42,7 +42,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'development',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return array(
 		'development' => array(
 			'driver'   => 'mysql',
 			'host'     => 'localhost',
-			'database' => 'database',
+			'database' => 'laravelsnippets2',
 			'username' => 'root',
 			'password' => '',
 			'charset'  => 'utf8',
