@@ -8,16 +8,17 @@ class Pages_Controller extends Base_Controller {
 		
 	}
 
-	public function get_index($page = null)
+	public function get_index()
 	{
-		if ( ! is_null($page)) {
-			$this->layout->content = View::make('pages.' . $page);	
-							
-		} else {
+		$this->layout->content = View::make('pages.index')->with('snippets', Snippet::order_by('created_at', 'desc')->take(5)->get());
+		$this->layout->currentPage = 'home';
+	}
 
-			$this->layout->content = View::make('pages.index')
-				->with('snippets', Snippet::all());
-		}
+	public function get_about()
+	{
+		$this->layout->content = View::make('pages.about');
+		$this->layout->pageTitle = 'About laravelsnippets.tk | laravelsnippets.tk'; 
+		$this->layout->currentPage = 'about';
 	}
 
 }

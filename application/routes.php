@@ -25,6 +25,10 @@ Route::controller( array(
 
 ) );
 
+Route::get('hash', function() {
+        return $pass = Hash::make('admin');
+});
+
 Route::get('/', 'pages@index');
 
 /*

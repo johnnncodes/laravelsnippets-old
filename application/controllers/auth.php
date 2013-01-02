@@ -16,12 +16,13 @@ class Auth_Controller extends Base_Controller {
         }
 
         $this->layout->content = View::make('auth.login');
+        $this->layout->currentPage = 'submit';
     }
 
     public function post_login() 
     {
         // to hash a password
-        // echo $pass = Hash::make('admin');
+        // return $pass = Hash::make('admin');
 
         $username = Input::get('username');
         $password = Input::get('password');

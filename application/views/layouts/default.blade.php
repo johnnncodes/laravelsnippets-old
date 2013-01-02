@@ -12,6 +12,9 @@
     <meta name="author" content="John Kevin M. Basco">
     <meta name="keywords" content="laravelsnippets, laravelsnippets.tk, laravel snippets, laravel snippets website, http://laravelsnippets.tk/, www.laravelsnippets.tk, https://laravelsnippets.tk/, laravel, snippets for laravel">
 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
     <style>
         body {
             /*padding-top: 60px;*/
@@ -86,11 +89,11 @@
         <div class="span12">
           <div class="masthead">
             <ul class="nav nav-pills pull-right">
-              <li class="active"><a href="{{ action('pages@index') }}">Home</a></li>
-              <li ><a href="{{ action('snippets@index') }}">Snippets</a></li>
-              <li><a href="{{ action('tags@index') }}">Tags</a></li>
-              <li><a href="{{ action('pages@index') }}pages/index/about">About</a></li>
-              <li><a href="{{ action('auth@login') }}">Submit</a></li>
+              <li class="{{ ($currentPage === 'home') ? 'active' : '' }}"><a href="{{ action('pages@index') }}">Home</a></li>
+              <li class="{{ ($currentPage === 'snippets') ? 'active' : '' }}"><a href="{{ action('snippets@index') }}">Snippets</a></li>
+              <li class="{{ ($currentPage === 'tags') ? 'active' : '' }}"><a href="{{ action('tags@index') }}">Tags</a></li>
+              <li class="{{ ($currentPage === 'about') ? 'active' : '' }}"><a href="{{ action('pages@index') }}pages/about">About</a></li>
+              <li class="{{ ($currentPage === 'submit') ? 'active' : '' }}"><a href="{{ action('auth@login') }}">Submit</a></li>
             </ul>
             <a href="{{ action('pages/index') }}"><h3 class="muted">Laravel Snippets</h3></a>
           </div>
@@ -109,6 +112,8 @@
    </div> <!-- /container-narrow -->
 
     <!-- SCRIPTS -->
+
+
 
         {{ Asset::container('bootstrapper')->scripts() }}
         

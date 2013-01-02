@@ -74,3 +74,7 @@ pre#snippet, pre#snippet pre {
 table#properties-table a.title-link:hover {
     text-decoration: underline;
 }
+
+#latest-snippets a:hover {
+    text-decoration: underline;
+}
