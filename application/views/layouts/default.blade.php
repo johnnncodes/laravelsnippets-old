@@ -102,7 +102,7 @@
         
 
 
-                 <div class="footer">
+      <div class="footer">
         <p>&copy; John Kevin M. Basco | Mayon Volcano Software Ltd.</p>
       </div>
 
