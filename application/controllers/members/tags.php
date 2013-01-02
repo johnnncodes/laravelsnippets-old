@@ -6,7 +6,7 @@ class Members_Tags_Controller extends Base_Controller {
 	{
 	    parent::__construct();
 	    $this->layout = View::make('layouts.memberscpanel');
-	    $this->layout->page_title = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
+	    $this->layout->pageTitle = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
 	    $this->filter('before', 'auth');
 	}
 
@@ -17,6 +17,17 @@ class Members_Tags_Controller extends Base_Controller {
 
 	public function post_add()
 	{
+		$input = Input::all();
+	    $rules = array(
+            'name' => 'required|max:25|unique:tags',
+        );
+		$validation = Validator::make($input, $rules);
+		if ($validation->fails())
+		{
+		    return Redirect::back()->with_errors($validation);
+		}
+
+		// save
 		$tag = New Tag;
 		$tag->name = Input::get('name');
 		$tag->slug = Str::slug(Input::get('name'));
@@ -28,7 +39,6 @@ class Members_Tags_Controller extends Base_Controller {
 		} else {
 			return Redirect::back()->with_errors($tag->errors->all());
 		}
-		
 	}
 
 }

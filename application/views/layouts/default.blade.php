@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ $page_title }}</title>
+    <title>{{ $pageTitle }}</title>
     <meta name="description" content="Repository of useful code snippets for the awesome Laravel framework">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <meta name="author" content="John Kevin M. Basco">
@@ -97,6 +97,10 @@
        </div>
      </div>
             {{ $content }}
+
+             <div class="push"><!-- / / --></div> <!-- /push -->
+        
+
 
                  <div class="footer">
         <p>&copy; John Kevin M. Basco | Mayon Volcano Software Ltd.</p>

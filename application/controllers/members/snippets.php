@@ -4,13 +4,18 @@ class Members_Snippets_Controller extends Base_Controller {
 
 	public $restful = true;
 
+	public $rules = array(
+		        'title' => 'required|max:80',
+		        'description' => 'required',
+		        'snippet' => 'required',
+		    );
+
 	public function __construct()
 	{
 	    parent::__construct();
 	    $this->filter('before', 'auth');
 	    $this->layout = View::make('layouts.memberscpanel');
-	    $this->layout->page_title = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
-
+	    $this->layout->pageTitle = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
 	}
 
 	public function get_index($id = null)
@@ -30,8 +35,6 @@ class Members_Snippets_Controller extends Base_Controller {
 										->with('currentPage', 'snippets')
 										->with('snippets', Snippet::where_user_id(Auth::user()->id)->paginate(10)); 
 		}
-
-
 	}
 
 	public function get_submit()
@@ -43,40 +46,9 @@ class Members_Snippets_Controller extends Base_Controller {
 
 	public function post_submit()
 	{
-
-		// SELECT * FROM `snippets` WHERE `ip` = '::1' and 
-		// DATE_SUB(DATE_ADD(NOW(),INTERVAL 5 HOUR),INTERVAL 0.25 HOUR) < `created_at`
-
-		// current time less than 15 mins
-		//return $deadline = with(new \DateTime)->sub(new \DateInterval('PT15M'))->format('Y-m-d H:i:s'); 
-		
-		// current time
-		//return $deadline = with(new \DateTime)->format('Y-m-d H:i:s'); 
-
-		// check if user havent posted within the last 15 mins
-		//$notAllowed = DB::query("SELECT COUNT(*) AS count FROM `snippets` WHERE `ip` = '::1' and DATE_SUB(DATE_ADD(NOW(),INTERVAL 6 HOUR),INTERVAL 0.25 HOUR) < `created_at");
-
-		//return $notAllowed[0]->count;
-
-
-		// current time less than 15 mins
-		//return $deadline = with(new \DateTime)->sub(new \DateInterval('PT15M'))->format('Y-m-d H:i:s'); 
-
-
-
-
-
-
 		$lastPostedDateTime = Snippet::where_ip(Request::ip())
 									->order_by('created_at', 'desc')
 									->first();
-
-		//return print_r($lastPostedDateTime);
-
-		// return $lastPostedDateTime->created_at;
-
-		// current time less than 15 mins
-		//$currentDateTimeMinus15mins = with(new \DateTime)->sub(new \DateInterval('PT15M'))->format('Y-m-d H:i:s'); 
 
 		if (is_null($lastPostedDateTime)) {
 			$lastPosted = 0;
@@ -88,20 +60,17 @@ class Members_Snippets_Controller extends Base_Controller {
 
 		$currentDateTimeMinus15mins = with(new \DateTime)->sub($interval)->format('Y-m-d H:i:s'); 	
 
-
 		if ($currentDateTimeMinus15mins < $lastPosted ) { // check if user has posted for the last 15 mins
 			return Redirect::back()->with_errors(array('Sorry you are only allowed to post once every 15 minutes. Please try again later.'));
 		}
 
-		// if we reach here, it means we are good to save! So lets commence saving! ;)
-		$snippet = New Snippet;
-		$snippet->title = Input::get('title');
-		$snippet->description = Input::get('description');
-		$snippet->code = Input::get('snippet');
-		$snippet->user_id = Auth::user()->id;
-		$snippet->published = 0;
-		$snippet->ip = Request::ip();
-
+		// validate input
+		$input = Input::all();
+		$validation = Validator::make($input, $this->rules);
+		if ($validation->fails())
+		{
+		    return Redirect::back()->with_errors($validation->errors->all());
+		}
 
 		// validate if the number of tags exceeds the allowed to be chosen
 		if (count(Input::get('tags')) > 3) {
@@ -121,9 +90,16 @@ class Members_Snippets_Controller extends Base_Controller {
 			}
 		}
 
+		// if we reach here, it means we are good to save! So lets commence saving! ;)
+		$snippet = New Snippet;
+		$snippet->title = Input::get('title');
+		$snippet->description = Input::get('description');
+		$snippet->code = Input::get('snippet');
+		$snippet->user_id = Auth::user()->id;
+		$snippet->published = 0;
+		$snippet->ip = Request::ip();
 
 		if ($snippet->save()) {
-
 
 			// relate the snippet and the tags if the user has chosen some tags
 			if (Input::get('tags')) {
@@ -132,27 +108,11 @@ class Members_Snippets_Controller extends Base_Controller {
 			}
 			
 			return Redirect::back()->with('success', 'Snippet successfuly submitted to be reviewed by the admin.');	
+
 		} else {
 			return Redirect::back()->with_errors($snippet->errors->all());
 		}
 	}
-
-	// public function get_view_snippet($id)
-	// {
-	// 	// validate
-	// 	// if ($count = Snippet::where_id($id)->count() < 1) {
-	// 	// 	return Response::error('404');
-	// 	// }
-
-	// 	// validate if the user is the owner of the snippet
-	// 	if ($count = Snippet::where_id_and_user_id($id, Auth::user()->id)->count() < 1) {
-	// 		return Response::error('404');
-	// 	}
-
-	// 	return View::make('members.snippets.single')
-	// 		->with('currentPage', 'snippets')
-	// 		->with('snippet', Snippet::where_id($id)->first());
-	// }
 
 	public function get_edit($id)
 	{
@@ -167,9 +127,9 @@ class Members_Snippets_Controller extends Base_Controller {
 		$selectedTagIdsArray = $snippet->tags()->lists('id');
 
 		$this->layout->content = View::make('members.snippets.edit')
-			->with('snippet', $snippet)
-			->with('tagsArray', Tag::lists('name', 'id'))
-			->with('selectedTagIdsArray', $selectedTagIdsArray);
+									->with('snippet', $snippet)
+									->with('tagsArray', Tag::lists('name', 'id'))
+									->with('selectedTagIdsArray', $selectedTagIdsArray);
 	}
 
 	public function post_edit()
@@ -179,13 +139,14 @@ class Members_Snippets_Controller extends Base_Controller {
 			return Response::error('404');
 		}
 
-		$snippet = Snippet::find(Input::get('id'));
+		// validate input
+		$input = Input::all();
+		$validation = Validator::make($input, $this->rules);
 
-		$snippet->user_id = Auth::user()->id;
-		$snippet->title = Input::get('title');
-		$snippet->description = Input::get('description');
-		$snippet->code = Input::get('snippet');
-		$snippet->published = 0;
+		if ($validation->fails())
+		{
+		    return Redirect::back()->with_errors($validation->errors->all());
+		}
 
 		// validate if the number of tags exceeds the allowed to be chosen
 		if (count(Input::get('tags')) > 3) {
@@ -204,6 +165,14 @@ class Members_Snippets_Controller extends Base_Controller {
 
 			}
 		}
+
+		// update
+		$snippet = Snippet::find(Input::get('id'));
+		$snippet->user_id = Auth::user()->id;
+		$snippet->title = Input::get('title');
+		$snippet->description = Input::get('description');
+		$snippet->code = Input::get('snippet');
+		$snippet->published = 0;
 
 		if ($snippet->save()) {
 
@@ -222,22 +191,21 @@ class Members_Snippets_Controller extends Base_Controller {
 
 	public function get_delete($id)
 	{
+		if (is_null($id)) {
+			return Response::error('404');
+		}
+
 		// validate if the user is the owner of the snippet
 		if ($count = Snippet::where_id_and_user_id($id, Auth::user()->id)->count() < 1) {
 			return Response::error('404');
 		}
 
-		// return $id;
-		$snippet = Snippet::where_id_and_user_id($id, Auth::user()->id);
+		$snippet = Snippet::where_id_and_user_id($id, Auth::user()->id)->first();
 
 		// remove relationships
-		$snippet->tags()->delete();
-
-		// return $snippet->title;
+	 	$snippet->tags()->delete();
 
 	 	$fromSingleView = Input::get('fromSingleView');
-
-	 	// return $fromSingleView;
 
 		if ($snippet->delete()) {
 
@@ -254,8 +222,6 @@ class Members_Snippets_Controller extends Base_Controller {
 			}
 			
 			return Redirect::back()->with_errors(array('Deleting failed!'));
-
-
 		}
 	}
 

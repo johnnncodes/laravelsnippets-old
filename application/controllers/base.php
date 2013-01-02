@@ -10,7 +10,8 @@ class Base_Controller extends Controller {
 	{
 		parent::__construct();
 		$this->filter('before', 'csrf')->on('post');
-		$this->layout->page_title = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
+		$this->layout->pageTitle = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
+
 	}
 
 	/**

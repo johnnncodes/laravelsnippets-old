@@ -44,7 +44,7 @@ class Admin_Tags_Controller extends Base_Controller {
 	public function get_manage()
 	{
 		return View::make('admin.tags.index')
-			->with('tags', Tag::order_by('created_at', 'desc')->paginate(10));
+					->with('tags', Tag::order_by('created_at', 'desc')->paginate(10));
 	}
 
 	public function get_edit($id)
@@ -55,7 +55,7 @@ class Admin_Tags_Controller extends Base_Controller {
 		}
 
 		return View::make('admin.tags.edit')
-			->with('tag', $tag = Tag::find($id));
+					->with('tag', $tag = Tag::find($id));
 	}
 
 	public function post_edit()

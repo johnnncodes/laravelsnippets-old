@@ -4,7 +4,6 @@
 
 		<h3 style="font-family: helvetica; color:#333;; text-align:center; font-size: 3.8em;">snippets.tag.cloud</h3>
 
-
 		<div id="tagcloud" style="width: 600px; margin: 0 auto;">
 			
 	        @foreach($tags as $tag)

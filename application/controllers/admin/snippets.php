@@ -8,7 +8,7 @@ class Admin_Snippets_Controller extends Base_Controller {
 	    $this->filter('before', 'auth');
 
 	    $this->layout = View::make('layouts.cpanel');
-	    $this->layout->page_title = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
+	    $this->layout->pageTitle = 'Laravelsnippets.tk is a repository of snippets for Laravel framework | laravelsnippets.tk';
 
 		if (Auth::check()) { // auth check to avoid trying to get property of non object error. dirty fix.
 			// validate if the user is an admin
