@@ -49,7 +49,9 @@ class Auth_Controller extends Base_Controller {
 
     public function get_register()
     {
-        $this->layout->content = View::make('auth.register')->with('currentPage', 'home');
+        $this->layout->content = View::make('auth.register');
+        $this->layout->currentPage = 'submit';
+        $this->layout->pageTitle = 'registration | laravelsnippets.tk';
     }
 
     public function post_register()
